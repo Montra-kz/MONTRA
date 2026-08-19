@@ -1,1062 +1,457 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MONTRA — Digital-агентство полного цикла</title>
-    <meta name="description" content="MONTRA — digital-агентство полного цикла. Создание сайтов, брендинг, управление репутацией в 2GIS, Google и Яндекс.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0f0f0f;
-            --bg-mid: #1a1a1a;
-            --bg-card: #222222;
-            --border: #333333;
-            --text: #e8e8e8;
-            --text-muted: #a0a0a0;
-            --accent: #c0c0c0;
-            --accent-hover: #ffffff;
-            --gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1f1f1f 100%);
-            --gradient-hero: linear-gradient(160deg, #0d0d0d 0%, #1c1c1c 40%, #252525 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ========== HEADER ========== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .header-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo span {
-            background: linear-gradient(90deg, #e0e0e0, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.25s;
-        }
-
-        nav a:hover {
-            color: #fff;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 28px;
-            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
-            color: #fff;
-            border: 1px solid #444;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: linear-gradient(135deg, #4a4a4a, #3a3a3a);
-            border-color: #666;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #d0d0d0, #a0a0a0);
-            color: #111;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #e8e8e8, #c0c0c0);
-            color: #000;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        /* ========== HERO ========== */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient-hero);
-            display: flex;
-            align-items: center;
-            padding: 120px 24px 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -20%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(80,80,80,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            width: 100%;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid #444;
-            border-radius: 50px;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 6vw, 64px);
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 28px;
-            max-width: 820px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(90deg, #ffffff, #999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 18px;
-            color: var(--text-muted);
-            max-width: 640px;
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .platforms {
-            margin-top: 60px;
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            flex-wrap: wrap;
-            opacity: 0.6;
-        }
-
-        .platforms span {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #777;
-        }
-
-        /* ========== SECTIONS ========== */
-        section {
-            padding: 100px 24px;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 17px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ========== CARDS ========== */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 36px 28px;
-            transition: all 0.35s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            border-color: #555;
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-        }
-
-        .card.recommended::before {
-            content: 'РЕКОМЕНДУЕМ';
-            position: absolute;
-            top: 18px;
-            right: -32px;
-            background: #555;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 40px;
-            transform: rotate(45deg);
-            letter-spacing: 1px;
-        }
-
-        .card-icon {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .card ul {
-            list-style: none;
-            margin: 16px 0 24px;
-            color: var(--text-muted);
-            font-size: 15px;
-        }
-
-        .card ul li {
-            padding: 6px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .card ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #888;
-        }
-
-        .card-price {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .card-for {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 24px;
-        }
-
-        /* ========== BRANDING ========== */
-        .branding-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .brand-card {
-            background: var(--gradient);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 28px 24px;
-            transition: 0.3s;
-        }
-
-        .brand-card:hover {
-            border-color: #555;
-        }
-
-        .brand-card h4 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .brand-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .brand-price {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        /* ========== REVIEWS / PACKAGES ========== */
-        .packages {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .package {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .package.popular {
-            border-color: #666;
-            background: linear-gradient(180deg, #2a2a2a, #1f1f1f);
-        }
-
-        .package.popular::after {
-            content: 'ПОПУЛЯРНЫЙ';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #555;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 14px;
-            border-radius: 20px;
-            letter-spacing: 1px;
-        }
-
-        .package h4 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .package .count {
-            font-size: 42px;
-            font-weight: 800;
-            margin: 12px 0 4px;
-        }
-
-        .package .label {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .package .price {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        /* ========== PROCESS ========== */
-        .process {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 24px;
-            counter-reset: step;
-        }
-
-        .step {
-            text-align: center;
-            padding: 24px 16px;
-            position: relative;
-        }
-
-        .step-num {
-            width: 56px;
-            height: 56px;
-            background: var(--bg-card);
-            border: 2px solid #444;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            color: #ccc;
-        }
-
-        .step h4 {
-            font-size: 17px;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        /* ========== ABOUT ========== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 36px;
-            margin-bottom: 24px;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 16px;
-            line-height: 1.75;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 32px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-        }
-
-        .feature span {
-            width: 8px;
-            height: 8px;
-            background: #888;
-            border-radius: 50%;
-        }
-
-        /* ========== FAQ ========== */
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-        }
-
-        .faq-question {
-            width: 100%;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 17px;
-            font-weight: 600;
-            padding: 24px 0;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: inherit;
-        }
-
-        .faq-question span {
-            font-size: 24px;
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-question span {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            padding-bottom: 24px;
-        }
-
-        /* ========== CONTACT ========== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-        }
-
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 32px 28px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .contact-card:hover {
-            border-color: #555;
-        }
-
-        .contact-card h4 {
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-
-        .contact-card p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 15px;
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: #0a0a0a;
-            border-top: 1px solid var(--border);
-            padding: 48px 24px;
-            text-align: center;
-        }
-
-        footer p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* ========== MOBILE ========== */
-        @media (max-width: 900px) {
-            nav {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero {
-                padding-top: 100px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+<title>MONTRA — Digital-агентство полного цикла</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF9;
+    --panel: #FFFFFF;
+    --panel-2: #F3F2FD;
+    --ink: #16161F;
+    --ink-soft: #62626F;
+    --violet: #5B4CF0;
+    --violet-deep: #3E2FD1;
+    --lime: #C6F24E;
+    --coral: #FF6F5E;
+    --line: rgba(22,22,31,0.09);
+    --radius: 20px;
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.01em;margin:0;}
+  a{color:inherit;text-decoration:none;}
+  a[href^="tel"]{color:inherit !important;text-decoration:none !important;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet-deep);font-weight:700;display:flex;align-items:center;gap:8px;}
+  .eyebrow::before{content:"";width:18px;height:1.5px;background:var(--violet-deep);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;border:1.5px solid transparent;transition:transform .15s ease, box-shadow .15s ease;white-space:nowrap;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--ink);color:#fff;}
+  .btn-primary:hover{box-shadow:0 10px 24px rgba(22,22,31,.22);}
+  .btn-violet{background:var(--violet);color:#fff;}
+  .btn-violet:hover{box-shadow:0 10px 24px rgba(91,76,240,.35);}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-sm{padding:10px 18px;font-size:13.5px;}
+  .btn-block{width:100%;}
+
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(250,250,249,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:var(--maxw);margin:0 auto;gap:20px;}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px;}
+  .logo-mark{width:32px;height:32px;border-radius:9px;background:var(--violet);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;}
+  nav.links{display:flex;gap:26px;font-size:14px;font-weight:600;color:var(--ink-soft);flex:1;justify-content:center;}
+  nav.links a{position:relative;padding:6px 0;transition:color .15s ease;white-space:nowrap;}
+  nav.links a:hover{color:var(--ink);}
+  nav.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--violet);transform:scaleX(0);transform-origin:left;transition:transform .2s ease;}
+  nav.links a:hover::after{transform:scaleX(1);}
+  .burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:40px;align-items:center;justify-content:center;font-size:18px;cursor:pointer;}
+  .mobile-menu{display:none;flex-direction:column;gap:2px;padding:8px 28px 18px;border-bottom:1px solid var(--line);background:var(--bg);}
+  .mobile-menu a{padding:12px 4px;font-size:15px;font-weight:600;border-bottom:1px solid var(--line);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu.open{display:flex;}
+
+  .hero{position:relative;overflow:hidden;background:radial-gradient(900px 460px at 85% -8%, rgba(91,76,240,.10), transparent 60%), var(--bg);padding:80px 0 56px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  .hero h1{font-size:clamp(34px,4.6vw,52px);line-height:1.08;}
+  .hero h1 em{font-style:normal;color:var(--violet);}
+  .hero p.lead{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:480px;margin:20px 0 28px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
+  .hero-trust{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .hero-trust span{display:flex;align-items:center;gap:7px;}
+  .hero-trust .dot{width:6px;height:6px;border-radius:50%;background:var(--violet);}
+  .hero-card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 24px 60px rgba(22,22,31,.06);}
+  .hero-card .tag{display:inline-flex;background:var(--panel-2);color:var(--violet-deep);font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;margin-bottom:20px;}
+  .hero-mini-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .hero-mini-row:last-child{border-bottom:none;}
+  .hero-mini-row .lbl{font-size:14px;color:var(--ink-soft);font-weight:600;}
+  .hero-mini-row .val{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;}
+
+  section{padding:80px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(26px,3.2vw,36px);max-width:560px;}
+  .section-head p{color:var(--ink-soft);font-size:15px;max-width:340px;line-height:1.5;}
+
+  /* pricing cards - fixed grid, equal height, no overflow */
+  .plans-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch;}
+  .plan-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;min-width:0;
+  }
+  .plan-card.featured{border-color:var(--violet);box-shadow:0 20px 40px rgba(91,76,240,.14);position:relative;}
+  .plan-badge{position:absolute;top:-13px;left:28px;background:var(--violet);color:#fff;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px;}
+  .plan-icon{width:42px;height:42px;border-radius:12px;background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;}
+  .plan-card h3{font-size:18px;margin-bottom:12px;}
+  .plan-list{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:9px;flex:1;}
+  .plan-list li{font-size:13.5px;color:var(--ink-soft);line-height:1.4;padding-left:20px;position:relative;}
+  .plan-list li::before{content:"✓";position:absolute;left:0;color:var(--violet);font-weight:700;}
+  .plan-price{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:4px;user-select:text;}
+  .plan-for{font-size:12.5px;color:var(--ink-soft);margin-bottom:18px;}
+
+  .addons-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px;}
+  .addon-card{background:var(--panel-2);border-radius:16px;padding:20px;min-width:0;}
+  .addon-card .ic{font-size:18px;margin-bottom:8px;}
+  .addon-card h4{font-size:14.5px;font-weight:700;margin-bottom:6px;}
+  .addon-card p{font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;line-height:1.4;}
+  .addon-price{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;}
+
+  /* branding cards */
+  .brand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;}
+  .brand-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;min-width:0;display:flex;flex-direction:column;}
+  .brand-card .ic{font-size:20px;margin-bottom:10px;}
+  .brand-card h4{font-size:15px;font-weight:700;margin-bottom:8px;line-height:1.3;}
+  .brand-card p{font-size:12.5px;color:var(--ink-soft);margin:0 0 14px;flex:1;line-height:1.4;}
+  .brand-price{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;}
+
+  /* reputation */
+  .rep-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;}
+  .rep-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;min-width:0;}
+  .rep-card .num{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--violet);}
+  .rep-card .lbl{font-size:12.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .rep-card .price{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:14px;}
+  .rep-neg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px;}
+  .rep-neg-card{background:var(--panel-2);border-radius:16px;padding:22px;min-width:0;}
+  .rep-neg-card h4{font-size:14.5px;margin-bottom:6px;}
+  .rep-neg-card p{font-size:12.5px;color:var(--ink-soft);margin:0 0 12px;}
+  .rep-neg-card .price{font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:12px;}
+
+  /* process */
+  .process{background:var(--panel-2);border:1px solid var(--line);border-radius:28px;padding:60px 36px;}
+  .process-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;position:relative;}
+  .process-track::before{content:"";position:absolute;top:20px;left:0;right:0;height:1px;background:var(--line);}
+  .process-step{min-width:0;}
+  .process-num{font-family:'Space Grotesk',sans-serif;font-size:13px;width:40px;height:40px;border-radius:50%;border:1px solid var(--violet);color:var(--violet-deep);display:flex;align-items:center;justify-content:center;background:var(--panel);position:relative;z-index:2;margin-bottom:18px;}
+  .process-step h3{font-size:15.5px;margin-bottom:6px;color:var(--ink);}
+  .process-step p{font-size:12.5px;color:var(--ink-soft);line-height:1.45;}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start;}
+  .about-grid p{font-size:15.5px;line-height:1.65;color:var(--ink-soft);margin:0 0 16px;}
+  .about-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+  .about-value{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:10px;}
+  .about-value .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;}
+  .about-quote{background:var(--panel-2);border-radius:18px;padding:26px;margin-top:8px;}
+  .about-quote p{font-family:'Space Grotesk',sans-serif;font-size:17px;font-style:normal;color:var(--ink);line-height:1.4;margin-bottom:10px;}
+  .about-quote span{font-size:12.5px;color:var(--ink-soft);}
+
+  /* faq */
+  .faq-list{max-width:760px;}
+  details.faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;list-style:none;padding:20px 4px;font-family:'Inter',sans-serif;font-size:15.5px;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;-webkit-tap-highlight-color:transparent;}
+  .faq-q::-webkit-details-marker{display:none;}
+  .faq-q::marker{content:"";}
+  .faq-q .plus{font-size:20px;color:var(--violet);transition:transform .2s ease;flex:none;}
+  details.faq-item[open] .plus{transform:rotate(45deg);}
+  .faq-a p{font-size:14px;color:var(--ink-soft);line-height:1.6;padding:0 4px 20px;margin:0;}
+
+  /* contact */
+  .contact-card{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:54px 40px;display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .contact-card h2{color:var(--ink);font-size:clamp(24px,3vw,32px);margin-bottom:10px;}
+  .contact-card p{color:var(--ink-soft);font-size:14.5px;margin:0;}
+  .contact-methods{display:flex;flex-direction:column;gap:12px;}
+  .contact-method{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0;}
+  .contact-method .lbl{font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;}
+  .contact-method .val{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;word-break:break-word;color:var(--ink);}
+
+  footer{padding:30px 0 40px;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line);padding-top:22px;font-size:12.5px;color:var(--ink-soft);}
+
+  @media(max-width:980px){
+    nav.links{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .plans-grid{grid-template-columns:1fr 1fr;}
+    .rep-grid{grid-template-columns:1fr 1fr;}
+    .process-track{grid-template-columns:1fr 1fr;row-gap:26px;}
+    .process-track::before{display:none;}
+    .about-grid{grid-template-columns:1fr;}
+    .contact-card{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){
+    .plans-grid,.addons-grid,.rep-grid,.rep-neg-grid,.process-track,.about-values{grid-template-columns:1fr;}
+    section{padding:56px 0;}
+    .process{padding:44px 22px;}
+    .contact-card{padding:36px 24px;}
+    .nav-inner{padding:14px 20px;}
+    .wrap{padding:0 20px;}
+  }
+</style>
 </head>
 <body>
 
-<!-- ========== HEADER ========== -->
-<header>
-    <div class="header-inner">
-        <a href="#" class="logo"><span>MONTRA</span></a>
-        <nav>
-            <a href="#web">Сайты</a>
-            <a href="#branding">Брендинг</a>
-            <a href="#reviews">Отзывы</a>
-            <a href="#process">Как работаем</a>
-            <a href="#about">О компании</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Контакты</a>
-            <a href="#contact" class="btn btn-primary" style="padding: 10px 22px;">Заказать</a>
-        </nav>
-        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">M</span>MONTRA</div>
+    <nav class="links">
+      <a href="#web">Сайты</a>
+      <a href="#branding">Брендинг</a>
+      <a href="#reputation">Репутация</a>
+      <a href="#process">Как работаем</a>
+      <a href="#about">О компании</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="#contact" class="btn btn-violet btn-sm">Заказать</a>
+      <button class="burger" id="burgerBtn" aria-label="Меню">☰</button>
     </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#web">Сайты</a>
+    <a href="#branding">Брендинг</a>
+    <a href="#reputation">Репутация</a>
+    <a href="#process">Как работаем</a>
+    <a href="#about">О компании</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Контакты</a>
+  </div>
 </header>
 
-<!-- ========== HERO ========== -->
 <section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge">С 2023 ГОДА • DIGITAL-АГЕНТСТВО</div>
-        <h1>MONTRA — <span>digital-агентство</span> полного цикла</h1>
-        <p class="hero-desc">
-            Мы помогаем бизнесу выделяться среди конкурентов, укреплять доверие клиентов и увеличивать продажи. 
-            Создаём современные сайты, фирменный стиль и сильную репутацию в интернете — от первой идеи до готового цифрового образа, который работает на вас 24/7.
-        </p>
-        <div class="hero-buttons">
-            <a href="#web" class="btn btn-primary">Заказать сайт</a>
-            <a href="#branding" class="btn">Брендинг</a>
-        </div>
-        <div class="platforms">
-            <span>2ГИС</span>
-            <span>Яндекс</span>
-            <span>Google</span>
-            <span>Instagram</span>
-        </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">С 2023 года · Digital-агентство</div>
+      <h1 style="margin-top:16px;">Помогаем бизнесу <em>выделяться</em> и продавать больше</h1>
+      <p class="lead">Сайты, фирменный стиль и репутация в 2ГИС, Google и Яндекс — от идеи до цифрового образа, который работает на вас 24/7.</p>
+      <div class="hero-ctas">
+        <a href="#web" class="btn btn-violet">Заказать сайт</a>
+        <a href="#branding" class="btn btn-ghost">Брендинг</a>
+      </div>
+      <div class="hero-trust">
+        <span><span class="dot"></span>2ГИС</span>
+        <span><span class="dot"></span>Яндекс</span>
+        <span><span class="dot"></span>Google</span>
+        <span><span class="dot"></span>Instagram</span>
+      </div>
     </div>
+    <div class="hero-card">
+      <span class="tag">● Отвечаем за 10–20 минут</span>
+      <div class="hero-mini-row"><span class="lbl">Сайт-визитка</span><span class="val">от 80 000 ₸</span></div>
+      <div class="hero-mini-row"><span class="lbl">Корпоративный сайт</span><span class="val">от 150 000 ₸</span></div>
+      <div class="hero-mini-row"><span class="lbl">Интернет-магазин</span><span class="val">от 400 000 ₸</span></div>
+      <div class="hero-mini-row"><span class="lbl">Логотип</span><span class="val">от 14 500 ₸</span></div>
+      <div class="hero-mini-row"><span class="lbl">Отзывы (10 шт)</span><span class="val">9 900 ₸</span></div>
+    </div>
+  </div>
 </section>
 
-<!-- ========== WEB DEVELOPMENT ========== -->
 <section id="web">
-    <div class="container">
-        <div class="section-header">
-            <h2>Веб-разработка</h2>
-            <p>От простой визитки до полноценного интернет-магазина. Уникальный дизайн, чистый код и полная адаптивность.</p>
-        </div>
-
-        <div class="cards">
-            <!-- HTML визитка -->
-            <div class="card">
-                <div class="card-icon">🌐</div>
-                <h3>HTML-визитка</h3>
-                <ul>
-                    <li>1–3 страницы (главная, контакты, услуги)</li>
-                    <li>Уникальный дизайн в чистом коде</li>
-                    <li>Полная адаптивность</li>
-                    <li>Передача готового кода</li>
-                </ul>
-                <div class="card-price">80 000 – 150 000 ₸</div>
-                <div class="card-for">Для малого бизнеса, специалистов и фрилансеров</div>
-                <a href="#contact" class="btn" style="width:100%">Заказать визитку</a>
-            </div>
-
-            <!-- Корпоративный -->
-            <div class="card recommended">
-                <div class="card-icon">🏢</div>
-                <h3>Корпоративный сайт</h3>
-                <ul>
-                    <li>5–10 страниц</li>
-                    <li>Дизайн + верстка</li>
-                    <li>Базовая SEO-оптимизация</li>
-                    <li>Инструкция по хостингу</li>
-                </ul>
-                <div class="card-price">150 000 – 300 000 ₸</div>
-                <div class="card-for">Для компаний, агентств и учебных центров</div>
-                <a href="#contact" class="btn" style="width:100%">Заказать корпоративный</a>
-            </div>
-
-            <!-- Интернет-магазин -->
-            <div class="card">
-                <div class="card-icon">🛒</div>
-                <h3>Интернет-магазин</h3>
-                <ul>
-                    <li>Каталог, корзина, поиск и фильтры</li>
-                    <li>Интеграция оплаты (по запросу)</li>
-                    <li>Готовый рабочий проект</li>
-                </ul>
-                <div class="card-price">400 000 – 600 000 ₸</div>
-                <div class="card-for">Для магазинов, брендов и e-commerce</div>
-                <a href="#contact" class="btn" style="width:100%">Заказать магазин</a>
-            </div>
-        </div>
-
-        <!-- Дополнительные услуги -->
-        <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
-            <div class="card" style="padding: 24px;">
-                <h4 style="margin-bottom:8px;">🔗 Домен + хостинг</h4>
-                <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">Подключение и настройка</p>
-                <div style="font-weight:700;">+30 000 – 50 000 ₸</div>
-            </div>
-            <div class="card" style="padding: 24px;">
-                <h4 style="margin-bottom:8px;">🛠️ Техподдержка</h4>
-                <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">Ежемесячное сопровождение</p>
-                <div style="font-weight:700;">20 000 – 40 000 ₸ / мес</div>
-            </div>
-            <div class="card" style="padding: 24px;">
-                <h4 style="margin-bottom:8px;">📝 Обновление контента</h4>
-                <p style="color:var(--text-muted); font-size:14px; margin-bottom:12px;">Тексты, фото, разделы</p>
-                <div style="font-weight:700;">от 10 000 ₸ / страница</div>
-            </div>
-        </div>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Веб-разработка</h2>
+      <p>От простой визитки до полноценного интернет-магазина — уникальный дизайн и полная адаптивность.</p>
     </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-icon">🌐</div>
+        <h3>HTML-визитка</h3>
+        <ul class="plan-list">
+          <li>1–3 страницы (главная, контакты, услуги)</li>
+          <li>Уникальный дизайн в чистом коде</li>
+          <li>Полная адаптивность</li>
+          <li>Передача готового кода</li>
+        </ul>
+        <div class="plan-price">80 000 – 150 000 ₸</div>
+        <div class="plan-for">Для малого бизнеса, специалистов и фрилансеров</div>
+        <a href="#contact" class="btn btn-ghost btn-block">Заказать визитку</a>
+      </div>
+      <div class="plan-card featured">
+        <span class="plan-badge">Популярный выбор</span>
+        <div class="plan-icon">🏢</div>
+        <h3>Корпоративный сайт</h3>
+        <ul class="plan-list">
+          <li>5–10 страниц</li>
+          <li>Дизайн + вёрстка</li>
+          <li>Базовая SEO-оптимизация</li>
+          <li>Инструкция по хостингу</li>
+        </ul>
+        <div class="plan-price">150 000 – 300 000 ₸</div>
+        <div class="plan-for">Для компаний, агентств и учебных центров</div>
+        <a href="#contact" class="btn btn-violet btn-block">Заказать корпоративный</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-icon">🛒</div>
+        <h3>Интернет-магазин</h3>
+        <ul class="plan-list">
+          <li>Каталог, корзина, поиск и фильтры</li>
+          <li>Интеграция оплаты (по запросу)</li>
+          <li>Готовый рабочий проект</li>
+        </ul>
+        <div class="plan-price">400 000 – 600 000 ₸</div>
+        <div class="plan-for">Для магазинов, брендов и e-commerce</div>
+        <a href="#contact" class="btn btn-ghost btn-block">Заказать магазин</a>
+      </div>
+    </div>
+    <div class="addons-grid">
+      <div class="addon-card"><div class="ic">🔗</div><h4>Домен + хостинг</h4><p>Подключение и настройка</p><div class="addon-price">+30 000 – 50 000 ₸</div></div>
+      <div class="addon-card"><div class="ic">🛠️</div><h4>Техподдержка</h4><p>Ежемесячное сопровождение</p><div class="addon-price">20 000 – 40 000 ₸ / мес</div></div>
+      <div class="addon-card"><div class="ic">📝</div><h4>Обновление контента</h4><p>Тексты, фото, разделы</p><div class="addon-price">от 10 000 ₸ / страница</div></div>
+    </div>
+  </div>
 </section>
 
-<!-- ========== BRANDING ========== -->
-<section id="branding" style="background: #141414;">
-    <div class="container">
-        <div class="section-header">
-            <h2>Брендинг</h2>
-            <p>Создаём и обновляем визуальный образ компании, который запоминается и продаёт.</p>
-        </div>
-
-        <div class="branding-grid">
-            <div class="brand-card">
-                <h4>⭐ Мини — логотип</h4>
-                <p>Простой, стильный и запоминающийся логотип</p>
-                <div class="brand-price">от 14 500 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Заказать</a>
-            </div>
-            <div class="brand-card">
-                <h4>⭐ Бизнес — логотип + стиль</h4>
-                <p>Логотип, цвета, шрифты, паттерны, носители</p>
-                <div class="brand-price">от 24 500 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Заказать</a>
-            </div>
-            <div class="brand-card">
-                <h4>💼 Визитка (двусторонняя)</h4>
-                <p>Современный дизайн визитки с двух сторон</p>
-                <div class="brand-price">от 17 300 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Заказать</a>
-            </div>
-            <div class="brand-card">
-                <h4>⭐ Премиум — брендбук</h4>
-                <p>Полный брендбук с правилами использования</p>
-                <div class="brand-price">от 59 900 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Заказать</a>
-            </div>
-            <div class="brand-card" style="grid-column: 1 / -1; max-width: 400px; margin: 0 auto;">
-                <h4>🔄 Редизайн бренда</h4>
-                <p>Освежим устаревший стиль, сделаем современнее</p>
-                <div class="brand-price">цена договорная</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Обсудить</a>
-            </div>
-        </div>
+<section id="branding">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Брендинг</h2>
+      <p>Создаём и обновляем визуальный образ компании, который запоминается и продаёт.</p>
     </div>
+    <div class="brand-grid">
+      <div class="brand-card"><div class="ic">⭐</div><h4>Мини — логотип</h4><p>Простой, стильный и запоминающийся логотип</p><div class="brand-price">от 14 500 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Заказать</a></div>
+      <div class="brand-card"><div class="ic">⭐</div><h4>Бизнес — логотип + стиль</h4><p>Логотип, цвета, шрифты, паттерны, носители</p><div class="brand-price">от 24 500 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Заказать</a></div>
+      <div class="brand-card"><div class="ic">💼</div><h4>Визитка (двусторонняя)</h4><p>Современный дизайн визитки с двух сторон</p><div class="brand-price">от 17 300 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Заказать</a></div>
+      <div class="brand-card"><div class="ic">💎</div><h4>Премиум — брендбук</h4><p>Полный брендбук с правилами использования</p><div class="brand-price">от 59 900 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Заказать</a></div>
+      <div class="brand-card"><div class="ic">🔄</div><h4>Редизайн бренда</h4><p>Освежим устаревший стиль, сделаем современнее</p><div class="brand-price">цена договорная</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Обсудить</a></div>
+    </div>
+  </div>
 </section>
 
-<!-- ========== REVIEWS ========== -->
-<section id="reviews">
-    <div class="container">
-        <div class="section-header">
-            <h2>Управление репутацией</h2>
-            <p>Реальные отзывы от проверенных пользователей на 2ГИС, Яндекс и Google</p>
-        </div>
-
-        <div class="packages">
-            <div class="package">
-                <h4>Мини</h4>
-                <div class="count">10</div>
-                <div class="label">отзывов</div>
-                <div class="price">9 900 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Выбрать</a>
-            </div>
-            <div class="package popular">
-                <h4>Оптимум</h4>
-                <div class="count">30</div>
-                <div class="label">отзывов</div>
-                <div class="price">27 000 ₸</div>
-                <a href="#contact" class="btn btn-primary" style="width:100%; padding:10px;">Выбрать</a>
-            </div>
-            <div class="package">
-                <h4>Усиление</h4>
-                <div class="count">50</div>
-                <div class="label">отзывов</div>
-                <div class="price">44 900 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Выбрать</a>
-            </div>
-            <div class="package">
-                <h4>Максимум</h4>
-                <div class="count">100</div>
-                <div class="label">отзывов</div>
-                <div class="price">84 900 ₸</div>
-                <a href="#contact" class="btn" style="width:100%; padding:10px;">Выбрать</a>
-            </div>
-        </div>
-
-        <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-            <div class="card" style="text-align:center;">
-                <h3 style="margin-bottom:12px;">❌ Удаление негатива</h3>
-                <p style="color:var(--text-muted); margin-bottom:8px;">До 5 отзывов</p>
-                <div style="font-size:22px; font-weight:700; margin-bottom:16px;">24 900 ₸</div>
-                <a href="#contact" class="btn" style="width:100%">Заказать</a>
-            </div>
-            <div class="card" style="text-align:center;">
-                <h3 style="margin-bottom:12px;">❌ Удаление негатива</h3>
-                <p style="color:var(--text-muted); margin-bottom:8px;">До 20 отзывов</p>
-                <div style="font-size:22px; font-weight:700; margin-bottom:16px;">54 900 ₸</div>
-                <a href="#contact" class="btn" style="width:100%">Заказать</a>
-            </div>
-        </div>
+<section id="reputation">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Управление репутацией</h2>
+      <p>Реальные отзывы от проверенных пользователей на 2ГИС, Яндекс и Google.</p>
     </div>
+    <div class="rep-grid">
+      <div class="rep-card"><div class="num">10</div><div class="lbl">отзывов · Мини</div><div class="price">9 900 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Выбрать</a></div>
+      <div class="rep-card"><div class="num">30</div><div class="lbl">отзывов · Оптимум</div><div class="price">27 000 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Выбрать</a></div>
+      <div class="rep-card"><div class="num">50</div><div class="lbl">отзывов · Усиление</div><div class="price">44 900 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Выбрать</a></div>
+      <div class="rep-card"><div class="num">100</div><div class="lbl">отзывов · Максимум</div><div class="price">84 900 ₸</div><a href="#contact" class="btn btn-ghost btn-block btn-sm">Выбрать</a></div>
+    </div>
+    <div class="rep-neg-grid">
+      <div class="rep-neg-card"><h4>❌ Удаление негатива</h4><p>До 5 отзывов</p><div class="price">24 900 ₸</div><a href="#contact" class="btn btn-ghost btn-sm">Заказать</a></div>
+      <div class="rep-neg-card"><h4>❌ Удаление негатива</h4><p>До 20 отзывов</p><div class="price">54 900 ₸</div><a href="#contact" class="btn btn-ghost btn-sm">Заказать</a></div>
+    </div>
+  </div>
 </section>
 
-<!-- ========== PROCESS ========== -->
-<section id="process" style="background: #141414;">
-    <div class="container">
-        <div class="section-header">
-            <h2>Как мы работаем</h2>
-            <p>Прозрачный и понятный процесс от первого контакта до сдачи проекта</p>
-        </div>
-
-        <div class="process">
-            <div class="step">
-                <div class="step-num">1</div>
-                <h4>Анализ</h4>
-                <p>Изучаем текущую репутацию и задачи бизнеса</p>
-            </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <h4>Стратегия</h4>
-                <p>Составляем план работ и согласовываем с вами</p>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <h4>Реализация</h4>
-                <p>Ежедневная или поэтапная работа над проектом</p>
-            </div>
-            <div class="step">
-                <div class="step-num">4</div>
-                <h4>Контроль</h4>
-                <p>Показываем результаты и вносим правки</p>
-            </div>
-            <div class="step">
-                <div class="step-num">5</div>
-                <h4>Сдача</h4>
-                <p>Финальная сдача + отчёты и исходники</p>
-            </div>
-        </div>
+<section id="process">
+  <div class="wrap">
+    <div class="process">
+      <div class="section-head">
+        <h2>Как мы работаем</h2>
+        <p>Прозрачный и понятный процесс — от первого контакта до сдачи проекта.</p>
+      </div>
+      <div class="process-track">
+        <div class="process-step"><div class="process-num">01</div><h3>Анализ</h3><p>Изучаем текущую репутацию и задачи бизнеса.</p></div>
+        <div class="process-step"><div class="process-num">02</div><h3>Стратегия</h3><p>Составляем план работ и согласовываем с вами.</p></div>
+        <div class="process-step"><div class="process-num">03</div><h3>Реализация</h3><p>Ежедневная или поэтапная работа над проектом.</p></div>
+        <div class="process-step"><div class="process-num">04</div><h3>Контроль</h3><p>Показываем результаты и вносим правки.</p></div>
+        <div class="process-step"><div class="process-num">05</div><h3>Сдача</h3><p>Финальная сдача + отчёты и исходники.</p></div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ========== ABOUT ========== -->
 <section id="about">
-    <div class="container">
-        <div class="about-grid">
-            <div class="about-text">
-                <h2>О компании MONTRA</h2>
-                <p>
-                    <strong>MONTRA</strong> — digital-агентство полного цикла, которое помогает бизнесу выделяться среди конкурентов, укреплять доверие клиентов и увеличивать продажи.
-                </p>
-                <p>
-                    Мы разрабатываем современные сайты, создаём фирменный стиль, занимаемся дизайном, повышаем рейтинг компаний в 2GIS, Google и Яндекс Картах, а также помогаем формировать сильную репутацию бренда в интернете.
-                </p>
-                <p>
-                    Наша цель — не просто выполнить заказ, а создать цифровой образ компании, который вызывает доверие, привлекает новых клиентов и помогает бизнесу расти. Каждый проект мы ведём как партнёры, а не просто исполнители: глубоко погружаемся в специфику, предлагаем решения и остаёмся на связи после сдачи.
-                </p>
-                <div class="features">
-                    <div class="feature"><span></span> Индивидуальный подход</div>
-                    <div class="feature"><span></span> Прозрачные цены</div>
-                    <div class="feature"><span></span> Реальные результаты</div>
-                    <div class="feature"><span></span> Постоянная связь</div>
-                    <div class="feature"><span></span> Конфиденциальность</div>
-                    <div class="feature"><span></span> Полная отчётность</div>
-                </div>
-            </div>
-            <div>
-                <div class="card" style="padding: 40px; text-align: center;">
-                    <div style="font-size: 48px; font-weight: 800; margin-bottom: 12px; background: linear-gradient(90deg,#fff,#888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">MONTRA</div>
-                    <p style="color: var(--text-muted); margin-bottom: 24px;">с 2023 года</p>
-                    <p style="font-size: 15px; line-height: 1.7; color: #bbb;">
-                        «Сильная репутация + сильный бренд = стабильный рост бизнеса»
-                    </p>
-                    <p style="margin-top: 16px; font-size: 13px; color: #777;">— Команда MONTRA</p>
-                </div>
-            </div>
-        </div>
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">О компании</div>
+      <h2 style="margin:16px 0 22px;font-size:clamp(26px,3.2vw,34px);">MONTRA — digital-агентство полного цикла</h2>
+      <p>Мы помогаем бизнесу выделяться среди конкурентов, укреплять доверие клиентов и увеличивать продажи.</p>
+      <p>Разрабатываем современные сайты, создаём фирменный стиль, повышаем рейтинг компаний в 2GIS, Google и Яндекс Картах, помогаем формировать сильную репутацию бренда в интернете.</p>
+      <p>Наша цель — не просто выполнить заказ, а создать цифровой образ компании, который вызывает доверие и помогает бизнесу расти. Каждый проект ведём как партнёры: глубоко погружаемся в специфику и остаёмся на связи после сдачи.</p>
+      <div class="about-quote">
+        <p>«Сильная репутация + сильный бренд = стабильный рост бизнеса»</p>
+        <span>— Команда MONTRA</span>
+      </div>
     </div>
+    <div class="about-values">
+      <div class="about-value"><span class="dot"></span>Индивидуальный подход</div>
+      <div class="about-value"><span class="dot"></span>Прозрачные цены</div>
+      <div class="about-value"><span class="dot"></span>Реальные результаты</div>
+      <div class="about-value"><span class="dot"></span>Постоянная связь</div>
+      <div class="about-value"><span class="dot"></span>Конфиденциальность</div>
+      <div class="about-value"><span class="dot"></span>Полная отчётность</div>
+    </div>
+  </div>
 </section>
 
-<!-- ========== FAQ ========== -->
-<section id="faq" style="background: #141414;">
-    <div class="container">
-        <div class="section-header">
-            <h2>Часто задаваемые вопросы</h2>
-        </div>
-
-        <div class="faq-list">
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Сколько времени занимает создание логотипа / бренда?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    Мини-логотип — от 3–7 дней.<br>
-                    Фирменный стиль — 10–20 дней.<br>
-                    Полный брендбук — от 3–6 недель.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Сколько времени занимает запуск проекта по отзывам?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    От 3 до 7 дней на анализ и старт работ.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Можно ли удалить все негативные отзывы?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    Только те, что нарушают правила площадки. Мы работаем исключительно в рамках правил 2ГИС, Яндекс и Google.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Работаете по всему Казахстану?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    Да, вся страна + страны СНГ.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    Как происходит оплата?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    50% предоплата, 50% после сдачи.<br>                 
-                </div>
-            </div>
-        </div>
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Часто задаваемые вопросы</h2>
+      <p>Не нашли ответ — напишите нам, ответим за 10–20 минут.</p>
     </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">Сколько времени занимает создание логотипа / бренда?<span class="plus">+</span></summary>
+        <div class="faq-a"><p>Мини-логотип — от 3–7 дней. Фирменный стиль — 10–20 дней. Полный брендбук — от 3–6 недель.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Сколько времени занимает запуск проекта по отзывам?<span class="plus">+</span></summary>
+        <div class="faq-a"><p>От 3 до 7 дней на анализ и старт работ.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Можно ли удалить все негативные отзывы?<span class="plus">+</span></summary>
+        <div class="faq-a"><p>Только те, что нарушают правила площадки. Мы работаем исключительно в рамках правил 2ГИС, Яндекс и Google.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Работаете по всему Казахстану?<span class="plus">+</span></summary>
+        <div class="faq-a"><p>Да, вся страна + страны СНГ.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Как происходит оплата?<span class="plus">+</span></summary>
+        <div class="faq-a"><p>50% предоплата, 50% после сдачи.</p></div>
+      </details>
+    </div>
+  </div>
 </section>
 
-<!-- ========== CONTACT ========== -->
 <section id="contact">
-    <div class="container">
-        <div class="section-header">
-            <h2>Свяжитесь с нами</h2>
-            <p>Ответим в течение 10–20 минут</p>
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <h2>Свяжитесь с нами</h2>
+        <p>Ответим в течение 10–20 минут.</p>
+      </div>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div><div class="lbl">WhatsApp</div><div class="val">+7 707 364 66 92</div></div>
+          <a href="https://wa.me/77073646692" class="btn btn-violet btn-sm">Написать →</a>
         </div>
-
-        <div class="contact-grid">
-            <div class="contact-card">
-                <h4>WhatsApp</h4>
-                <p>+7 707 364 66 92</p>
-                <a href="https://wa.me/77073646692" target="_blank" class="btn" style="width:100%">Написать →</a>
-            </div>
-            
- 	    <div class="contact-card">
-                <h4>Mail.ru</h4>
-                <p>montra.kz@mail.ru</p>
-                <a href="mailto:montra.kz@mail.ru" target="_blank" class="btn" style="width:100%">Написать на почту →</a>
-            </div>
-            
+        <div class="contact-method">
+          <div><div class="lbl">Mail.ru</div><div class="val">montra.kz@mail.ru</div></div>
+          <a href="mailto:montra.kz@mail.ru" class="btn btn-ghost btn-sm">Написать →</a>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
 <footer>
-    <p>© 2026 MONTRA. Все права защищены.</p>
-    <p style="margin-top: 8px;">Репутация • Брендинг • Создание сайтов в Казахстане</p>
+  <div class="wrap footer-inner">
+    <span>© 2026 MONTRA. Все права защищены.</span>
+    <span>Репутация · Брендинг · Создание сайтов в Казахстане</span>
+  </div>
 </footer>
 
 <script>
-    function toggleFaq(btn) {
-        const item = btn.parentElement;
-        const wasActive = item.classList.contains('active');
-        
-        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-        
-        if (!wasActive) {
-            item.classList.add('active');
-        }
-    }
-
-    function toggleMenu() {
-        const nav = document.querySelector('nav');
-        if (nav.style.display === 'flex') {
-            nav.style.display = 'none';
-        } else {
-            nav.style.display = 'flex';
-            nav.style.flexDirection = 'column';
-            nav.style.position = 'absolute';
-            nav.style.top = '72px';
-            nav.style.left = '0';
-            nav.style.right = '0';
-            nav.style.background = '#111';
-            nav.style.padding = '20px';
-            nav.style.gap = '16px';
-            nav.style.borderBottom = '1px solid #333';
-        }
-    }
-
-    // Закрытие меню при клике на ссылку
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 900) {
-                document.querySelector('nav').style.display = 'none';
-            }
+  document.getElementById('burgerBtn').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('mobileMenu').classList.remove('open'); });
+  });
+  document.querySelectorAll('details.faq-item').forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if(item.open){
+        document.querySelectorAll('details.faq-item[open]').forEach(function(openItem){
+          if(openItem !== item) openItem.removeAttribute('open');
         });
+      }
     });
+  });
 </script>
 
 </body>
